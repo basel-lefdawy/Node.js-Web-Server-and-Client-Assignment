@@ -1,0 +1,31 @@
+const http = require('http');
+const fs = require('fs');
+const JSONDATA = {
+    name: 'basel lefdawy',
+    studentID: '12400330'
+}
+const PORT = 3000;
+const server = http.createServer((req, res) => {
+    if (req.url === '/' && req.method === 'GET') {
+        console.log(`Received a GET request at ${req.url}`);
+        fs.readFile('index.html', (err, data) => {
+            if (err) {
+                res.writeHead(500, { 'Content-Type': 'text/plain' });
+                res.end('Internal Server Error');
+            } else {
+                res.writeHead(200, { 'Content-Type': 'text/html' });
+                res.end(data);
+            }
+        });
+    } else if (req.url === '/JSON' && req.method === 'GET') {
+        console.log(`Received a GET request at ${req.url}`);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(JSONDATA));
+    } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Not Found');
+    }
+});
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
