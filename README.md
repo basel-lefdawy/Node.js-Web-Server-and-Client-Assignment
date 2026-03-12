@@ -21,7 +21,7 @@ The assignment illustrates basic concepts of:
 project-folder/
 │
 ├── server.js      # Node.js web server
-├── client.js      # Script that sends a request to the JSON API
+├── requestSender.js      # Script that sends a request to the JSON API
 ├── index.html     # HTML page containing name and student ID
 └── README.md
 ```
